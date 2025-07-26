@@ -2,9 +2,11 @@ import { NextResponse } from 'next/server'
 import axios, { isAxiosError } from 'axios'
 
 export async function GET(req: Request) {
+
+  try {
   const { searchParams } = new URL(req.url)
   const code  = searchParams.get('code')
-  const plan  = searchParams.get('state')
+  // const plan  = searchParams.get('state')
   if (!code) return NextResponse.next({ status: 400 })
 
   const params = new URLSearchParams({
@@ -79,4 +81,8 @@ await axios.post(`https://discord.com/api/v10/channels/${dm.id}/messages`, {
 
 
   return NextResponse.redirect(`${process.env.NEXT_PUBLIC_SITE_URL}/invite/auth/success`)
+} catch(error) {
+   return NextResponse.redirect(`${process.env.NEXT_PUBLIC_SITE_URL}/discord`)
+};
+
 }

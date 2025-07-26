@@ -3,9 +3,8 @@ import { NextResponse } from 'next/server'
 export function GET(req: Request) {
   const { searchParams } = new URL(req.url)
   const plan = searchParams.get('plan')
-  const redirect_uri = encodeURIComponent(
-    `${process.env.NEXT_PUBLIC_SITE_URL}/api/discord/callback`
-  )
+  const redirect_uri =  `${process.env.NEXT_PUBLIC_SITE_URL}/api/discord/callback`
+
 
   const url =
     `https://discord.com/oauth2/authorize` +
